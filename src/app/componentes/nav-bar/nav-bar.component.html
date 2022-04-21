@@ -1,0 +1,8 @@
+<ul>
+    <li style="float:right"><a routerLink = 'Home'><img  id="logo" src="../../../assets/Logo2.png"></a></li>
+    <li *ngIf="(authService.authenticated$ | async) === true"  class="liClass"><a class="textLink" (click)="cerrarSesion()" routerLink =''>Cerrar Sesion</a></li>
+    <li *ngIf="(authService.authenticated$ | async) === false" class="liClass"><a class="textLink"  routerLink =''>Iniciar Sesion</a></li>
+    <li *ngIf="(authService.authenticated$ | async) === false" class="liClass"><a class="textLink"  routerLink ='Registro'>Registrarse</a></li>
+    <li class =  "liClass"><a class="textLink" routerLink ='/QuienSoy'>Quien Soy</a></li>
+    <li *ngIf="(authService.authenticated$ | async) === true"  class="liClass" id="email">Nombre usuario</li>
+</ul>
