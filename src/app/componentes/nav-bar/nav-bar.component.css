@@ -15,6 +15,20 @@ li {
     color:white;
 }
 
+.email{
+    height: 100%;
+    float: left;
+    list-style: none;
+    justify-content: space-around;
+    color:white;
+    padding-left: 10%;
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    justify-content: space-around;
+}
+
 .liClass{
     width: 7%;
     min-width: 65px;

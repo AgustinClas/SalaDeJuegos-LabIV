@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireAuth  } from '@angular/fire/compat/auth';
 import { BehaviorSubject } from 'rxjs';
+import { AppRoutingModule } from '../app-routing.module';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,16 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthFirebaseService {
   
   authenticated$ = new BehaviorSubject(false);
+  usuario:any;
 
-  public authenticate() {
+  public authenticate(usr?:string) {
     this.authenticated$.next(true);
-  
+    this.usuario = usr;
   }
 
   public deauthenticate() {
     this.authenticated$.next(false);
+    this.usuario = '';
   }
 
   constructor(private auth:AngularFireAuth) { 
@@ -24,23 +27,14 @@ export class AuthFirebaseService {
 
   async iniciarSesion(email:string, password:string){
     
-    try{
-      return await this.auth.signInWithEmailAndPassword(email, password)
+    return this.auth.signInWithEmailAndPassword(email, password)
 
-    }catch(err){
-      console.log("Error en login: ", err)
-      return null
-    }
   }
 
   async registrar(email:string, password:string){
-    
-    try{
-      return await this.auth.createUserWithEmailAndPassword(email, password)
-    }catch(err){
-      console.log("Error en login: ", err)
-      return null
-    }
+
+    return this.auth.createUserWithEmailAndPassword(email, password);
+
   }
 
   obtenerUsuarioLogueado(){

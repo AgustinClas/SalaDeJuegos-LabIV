@@ -1,0 +1,31 @@
+    <div class="container">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <button class="buttonMM" (click)="Apostar(0)" [disabled]="bloqueo">
+                        <img src="../../../assets/flechaAbajo5.png" >
+                    </button>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <div class="randomNumber">
+                        <p *ngIf = "juegoActivo">{{randomActual}}</p>
+                        <img *ngIf="juegoActivo === false" src="../../../assets/perdiste.gif" >
+                    </div>
+                    <div class="randomNumber"><p>{{contadorAciertos}}</p></div>
+                    <div class="divReiniciar">
+                        <button (click)="reiniciar()" class="buttonReiniciar">Reiniciar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4 shadow-sm" id="tarjeta">
+                <div class="card-body">
+                    <button class="buttonMM" (click)="Apostar(1)" [disabled]="bloqueo">
+                        <img src="../../../assets/flechaArriba5.png" >
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>

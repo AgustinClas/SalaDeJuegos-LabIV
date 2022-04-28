@@ -1,23 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireModule } from '@angular/fire/compat';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/Entidades/usuario';
 import { AuthFirebaseService } from 'src/app/servicios/auth-firebase.service';
+import { DataStorageServiceService } from 'src/app/servicios/data-storage-service.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   email:string;
   password:string;
+  errorInicio:boolean;
 
   loginUsuario:Usuario = new Usuario();
 
-  constructor(public ruteo:Router, private authService:AuthFirebaseService) {
+  constructor(public ruteo:Router, private authService:AuthFirebaseService, private dataStorage:DataStorageServiceService) {
     this.email = "";
     this.password = "";
+    this.errorInicio = false;
   }
 
   ngOnInit(): void {
@@ -27,27 +32,31 @@ export class LoginComponent implements OnInit {
     this.ruteo.navigateByUrl(this.loginUsuario.email);
   }
 
-  ingresar(){
+   async ingresar(){
 
-    this.authService.iniciarSesion(this.loginUsuario.email, this.loginUsuario.password).then(() => {
-      if(this.authService.obtenerUsuarioLogueado()){ 
+    try{
+       
+       this.authService.iniciarSesion(this.loginUsuario.email, this.loginUsuario.password).then( usr => {
 
-        this.authService.authenticate();
-        this.ruteo.navigateByUrl("Home");
-      }
-    })
+         if(usr.user?.email){ 
+           this.authService.authenticate(usr.user?.email);
+           this.ruteo.navigateByUrl("Home");
+           this.dataStorage.GuardarLog(usr.user?.email);
+           this.errorInicio = false;
+         }
+       }).catch(e => {this.errorInicio = true});
+        
+    }
+    catch(e){
+      console.log("Error");
+    }
   }
-
-
 
   iniciarSesionAutomaticamente(){
     
-    this.loginUsuario.email = "agu@gmail.com";
+    this.loginUsuario.email = "usuario@anonimo.com";
     this.loginUsuario.password = "123456"
   
   }
-
-
-
 
 }

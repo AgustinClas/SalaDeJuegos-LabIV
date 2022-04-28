@@ -14,6 +14,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
+import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
+import { MayorOmenorComponent } from './componentes/mayor-omenor/mayor-omenor.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
     QuienSoyComponent,
     RegistroComponent,
     NavBarComponent,
+    AhorcadoComponent,
+    MayorOmenorComponent,
   ],
   imports: [
     BrowserModule,

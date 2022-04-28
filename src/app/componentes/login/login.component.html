@@ -4,6 +4,7 @@
         <div class="colm-form">
             <div class="form-container">
                 <img  id="logo" src="../../../assets/Logo2.png">
+                <p  *ngIf="errorInicio === true" class = "pError">Error al iniciar sesion</p>
                 <input type="text" id= "email" placeholder="Email" [(ngModel)] = "loginUsuario.email" >
                 <input type="password" placeholder="Contraseña" [(ngModel)] = "loginUsuario.password">
                 <input type="button" class="btn-login" (click)="ingresar()" value="Iniciar Sesion" >

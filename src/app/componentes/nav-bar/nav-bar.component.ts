@@ -9,7 +9,6 @@ import { AuthFirebaseService } from 'src/app/servicios/auth-firebase.service';
 })
 export class NavBarComponent implements OnInit {
 
-  usuario = this.obtenerUsuarioLogueado();
 
   constructor(public authService:AuthFirebaseService) { 
   }
@@ -20,14 +19,8 @@ export class NavBarComponent implements OnInit {
   cerrarSesion(){
     this.authService.cerrarSesion();
     this.authService.deauthenticate();
-    
   }
 
-  obtenerUsuarioLogueado(){
-    const user = this.authService.obtenerUsuarioLogueado()
-    console.log(user);
-  
-  }
 
 
 }

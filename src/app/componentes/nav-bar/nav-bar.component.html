@@ -4,5 +4,5 @@
     <li *ngIf="(authService.authenticated$ | async) === false" class="liClass"><a class="textLink"  routerLink =''>Iniciar Sesion</a></li>
     <li *ngIf="(authService.authenticated$ | async) === false" class="liClass"><a class="textLink"  routerLink ='Registro'>Registrarse</a></li>
     <li class =  "liClass"><a class="textLink" routerLink ='/QuienSoy'>Quien Soy</a></li>
-    <li *ngIf="(authService.authenticated$ | async) === true"  class="liClass" id="email">Nombre usuario</li>
+    <li *ngIf="authService.usuario" id="email">{{authService.usuario}}</li>
 </ul>
