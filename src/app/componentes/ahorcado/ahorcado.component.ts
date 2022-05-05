@@ -21,7 +21,7 @@ export class AhorcadoComponent implements OnInit {
     ['M','U','R','C','I','E','L','A','G','O'],
     ['C','U','A','R','E','N','T','E','N','A'],
     ['P','R','O','G','R','A','M','A','C','I','O','N'],
-    ['T','E','C','L','A','D','0'],
+    ['T','E','C','L','A','D','O'],
     ['D','I','N','O','S','A','U','R', 'I', 'O'],
     ['A','N','G','U','U','L','A','R'],
     ['A','H','O','R','C','A','D','O'],
@@ -62,6 +62,7 @@ export class AhorcadoComponent implements OnInit {
       //determinamosSiGano
       if(this.cantidadAciertos === this.palabraOriginal.length){
         this.bloquearTeclas();
+        this.vidas = 10;
       }
     
       const element = document.getElementById(letra)

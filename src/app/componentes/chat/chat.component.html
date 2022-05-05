@@ -1,0 +1,28 @@
+<div class="card text-center" *ngIf="authService.usuario; else other_content">
+    <div class="card-header">
+        Chat
+    </div>
+    <div class="card-body">
+    <div class="containerChats">
+        <div *ngFor="let mensaje of mensajes"  class="divMensaje">
+          <div [ngClass]="(authService.usuario === mensaje.usuario) ? 'enviado' : 'recibido'">
+            <p *ngIf="(authService.usuario !== mensaje.usuario)" class="usuario">{{mensaje.usuario}}: </p>
+            <p>{{mensaje.texto}}</p>
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="card-footer text-muted">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Escriba su mensaje..." aria-describedby="basic-addon2"  [(ngModel)] = "nuevoMensaje" >
+            <div class="input-group-append">
+              <button (click)="enviarMensaje()" class="enviarBoton">Enviar</button>
+            </div>
+          </div>
+        </div>
+</div>
+<ng-template #other_content>
+  <div class="mainElse">
+    <p class="mensajeElse">Debes iniciar sesion para ingresar al chat!</p>
+  </div>
+</ng-template>

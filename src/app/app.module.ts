@@ -16,6 +16,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
 import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
 import { MayorOmenorComponent } from './componentes/mayor-omenor/mayor-omenor.component';
+import { ChatComponent } from './componentes/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MayorOmenorComponent } from './componentes/mayor-omenor/mayor-omenor.co
     NavBarComponent,
     AhorcadoComponent,
     MayorOmenorComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

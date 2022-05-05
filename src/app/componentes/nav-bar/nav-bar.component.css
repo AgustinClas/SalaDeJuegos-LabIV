@@ -3,7 +3,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: rgb(23, 9, 82);
-    height: 70px;
+    height: 10vh;
     justify-content: space-around;
 }
   
@@ -19,13 +19,11 @@ li {
     height: 100%;
     float: left;
     list-style: none;
-    justify-content: space-around;
     color:white;
     padding-left: 10%;
     display: block;
     color: white;
     text-align: center;
-    text-decoration: none;
     justify-content: space-around;
 }
 
@@ -47,13 +45,14 @@ li a {
 #email{
     width: 7%;
     min-width: 65px;
-    justify-content: space-around;
     height: 100%;
     display: block;
     color: white;
     text-align: center;
     text-decoration: none;
     justify-content: space-around; 
+    margin:auto;
+    padding-top: 17px;
 }
 
   

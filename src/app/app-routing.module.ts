@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
+import { ChatComponent } from './componentes/chat/chat.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { JuegosComponent } from './componentes/juegos/juegos.component';
 import { LoginComponent } from './componentes/login/login.component';
@@ -25,6 +26,8 @@ const routes: Routes = [
   {path: 'Registro', component:RegistroComponent},
   {path: 'ahorcado', component: AhorcadoComponent},
   {path: 'mayor-menor', component: MayorOmenorComponent},
+  {path: 'chat', component: ChatComponent},
+  {path: 'trivia', component: PreguntadosComponent},
   {path: '**', component:NotFoundComponent},
 ];
 
