@@ -1,0 +1,16 @@
+<div class="mains">
+    <div class="divTitulo">
+        <p class="titulo">{{this.mensaje}}</p>
+    </div>
+    <div class="divJuego">
+        <div class="keyboard-base">
+            <button [ngClass]="this.turno" [disabled]="entrada.bloqueo"  *ngFor="let entrada of entradas" (click)="IngresarFicha(entrada.posicion)"></button>
+            <div [ngClass]="espacio.clase" *ngFor="let espacio of espacios"></div>
+        </div>
+    </div>
+    <div class="divTitulo">
+        <button class="botonReiniciar" (click)="ReiniciarJuego()">Reiniciar</button>
+    </div>
+</div>
+
+

@@ -17,6 +17,8 @@ import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
 import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
 import { MayorOmenorComponent } from './componentes/mayor-omenor/mayor-omenor.component';
 import { ChatComponent } from './componentes/chat/chat.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CuatroEnLineaComponent } from './componentes/cuatro-en-linea/cuatro-en-linea.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +34,13 @@ import { ChatComponent } from './componentes/chat/chat.component';
     AhorcadoComponent,
     MayorOmenorComponent,
     ChatComponent,
+    CuatroEnLineaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyCRKspIEi8o3hADS26wmmW-NeYd8HuSaLY",
       authDomain: "ac-games-85b64.firebaseapp.com",
