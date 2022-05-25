@@ -1,25 +1,37 @@
 <!-- About Section Start -->
 <div class="main">
     <div class="container">
-        <div class="profile-wrapper">
-            <div class="divTitulo">
-                <p class="titulo">Aciertos: {{contador}}</p>
+        <div class="row">
+            <div class="order-md-1">
+                <div class="divTitulo">
+                    <p class="titulo">Aciertos: {{contador}}</p>
+                </div>
+                <div>
+                    <img *ngIf="juegoPerdido"  class = "imgPerfil" src="../../../assets/perdiste.gif">
+                    <img *ngIf="!juegoPerdido"  class = "imgPerfil" src={{this.paisBandera.imagen}}>
+                </div>
+                <div class="btn-group-vertical">
+                    <button *ngIf="juegoPerdido; else optionsBlock" class ="btn btn-common" (click)="Reiniciar()"> Reiniciar! </button>
+                    <ng-template #optionsBlock>
+                        <button class ="btn btn-common" (click)="Intento(0)">{{paisesElegidos[0].pais}}</button>
+                        <button class ="btn btn-common" (click)="Intento(1)">{{paisesElegidos[1].pais}}</button>
+                        <button class ="btn btn-common" (click)="Intento(2)">{{paisesElegidos[2].pais}}</button>
+                    </ng-template>
+                </div>
             </div>
-            <div>
-                <img *ngIf="juegoPerdido"  class = "imgPerfil" src="../../../assets/perdiste.gif">
-                <img *ngIf="!juegoPerdido"  class = "imgPerfil" src={{this.paisBandera.imagen}}>
-            </div>
-            <div class="btn-group-vertical">
-                <button *ngIf="juegoPerdido; else optionsBlock" class ="btn btn-common" (click)="Reiniciar()"> Reiniciar! </button>
-                <ng-template #optionsBlock>
-                    <button class ="btn btn-common" (click)="Intento(0)">{{paisesElegidos[0].pais}}</button>
-                    <button class ="btn btn-common" (click)="Intento(1)">{{paisesElegidos[1].pais}}</button>
-                    <button class ="btn btn-common" (click)="Intento(2)">{{paisesElegidos[2].pais}}</button>
-                </ng-template>
+            <div class="order-md-1 listadoRecords">
+                <h4>Top 5 records</h4>
+                <table class="fl-table">
+                    <tr *ngFor="let juego of juegosRecord" >
+                        <td > {{juego.usuario}} </td>
+                        <td > {{juego.resultado}} </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
 
   <!-- About Section End -->
 

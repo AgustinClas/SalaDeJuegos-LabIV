@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthFirebaseService } from 'src/app/servicios/auth-firebase.service';
+import { DataStorageServiceService } from 'src/app/servicios/data-storage-service.service';
 
 @Component({
   selector: 'app-mayor-omenor',
@@ -13,7 +15,7 @@ export class MayorOmenorComponent implements OnInit {
   bloqueo:boolean = false;
   juegoActivo:boolean = true;
 
-  constructor() { 
+  constructor(private auth:AuthFirebaseService, private DataStorage:DataStorageServiceService) { 
   this.randomActual = this.generarRandomInt();
   this.randomSiguiente = 0;
   this.contadorAciertos = 0;
@@ -37,11 +39,15 @@ export class MayorOmenorComponent implements OnInit {
       //pierde
       this.bloqueo = true;
       this.juegoActivo = false;
+      this.GuardarJugada();
     }
-
-
   }
 
+  GuardarJugada(){
+    let jugada = {"usuario": this.auth.usuario , "resultado": this.contadorAciertos, "fecha": new Date()}
+    this.DataStorage.GuardarJuego("mayor-menor", jugada);
+  }
+  
   generarRandomInt(){
     return Math.floor(Math.random() * (100 - 0 + 1) + 0);
   }

@@ -1,45 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
-import { HomeComponent } from './componentes/home/home.component';
 import { JuegosComponent } from './componentes/juegos/juegos.component';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
-import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
 import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { RegistroComponent } from './componentes/registro/registro.component';
-import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
-import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
-import { MayorOmenorComponent } from './componentes/mayor-omenor/mayor-omenor.component';
 import { ChatComponent } from './componentes/chat/chat.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CuatroEnLineaComponent } from './componentes/cuatro-en-linea/cuatro-en-linea.component';
+import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
+import { RespuestaEncuestasComponent } from './componentes/respuesta-encuestas/respuesta-encuestas.component';
+import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
+    NavBarComponent,
     JuegosComponent,
     NotFoundComponent,
-    PreguntadosComponent,
     QuienSoyComponent,
     RegistroComponent,
-    NavBarComponent,
-    AhorcadoComponent,
-    MayorOmenorComponent,
     ChatComponent,
-    CuatroEnLineaComponent,
+    EncuestaComponent,
+    RespuestaEncuestasComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyCRKspIEi8o3hADS26wmmW-NeYd8HuSaLY",

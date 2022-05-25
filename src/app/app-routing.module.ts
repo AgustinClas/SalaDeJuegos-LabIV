@@ -1,35 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
 import { ChatComponent } from './componentes/chat/chat.component';
-import { CuatroEnLineaComponent } from './componentes/cuatro-en-linea/cuatro-en-linea.component';
-import { HomeComponent } from './componentes/home/home.component';
-import { JuegosComponent } from './componentes/juegos/juegos.component';
+import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 import { LoginComponent } from './componentes/login/login.component';
-import { MayorOmenorComponent } from './componentes/mayor-omenor/mayor-omenor.component';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
-import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
 import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { RespuestaEncuestasComponent } from './componentes/respuesta-encuestas/respuesta-encuestas.component';
+import { AdminGuard } from './guards/admin.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component:LoginComponent},
-  {path: 'Home', component:HomeComponent},
-  {path: 'juegos', component:JuegosComponent, children:
-    [
-    {path: 'login', component:LoginComponent},
-    {path: 'preguntados', component:PreguntadosComponent},
-    {path: '**', component:NotFoundComponent}
-    ]
-  },
+  {path: 'Home', loadChildren:() => import('src/app/modulo/games/games.module').then(m => m.GamesModule)},
+  {path: 'encuesta', component:EncuestaComponent, canActivate: [AuthGuard]},
+  {path: 'respuestasEncuesta', component:RespuestaEncuestasComponent, canActivate: [AdminGuard]},
   {path: 'QuienSoy', component:QuienSoyComponent},
   {path: 'Registro', component:RegistroComponent},
-  {path: 'ahorcado', component: AhorcadoComponent},
-  {path: 'mayor-menor', component: MayorOmenorComponent},
   {path: 'chat', component: ChatComponent},
-  {path: 'trivia', component: PreguntadosComponent},
-  {path: 'cuatro-en-linea', component: CuatroEnLineaComponent},
   {path: '**', component:NotFoundComponent},
 ];
 

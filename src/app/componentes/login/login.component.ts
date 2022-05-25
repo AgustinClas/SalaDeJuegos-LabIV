@@ -52,10 +52,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  iniciarSesionAutomaticamente(){
+  iniciarSesionAutomaticamente(opcion:number){
     
-    this.loginUsuario.email = "usuario@anonimo.com";
-    this.loginUsuario.password = "123456"
+    if(opcion===0){ 
+      this.loginUsuario.email = "usuario@anonimo.com";
+      this.loginUsuario.password = "123456"
+    }
+    else{
+      this.loginUsuario.email = "admin@acgames.com";
+      this.loginUsuario.password = "admin123"
+    }
   
   }
 

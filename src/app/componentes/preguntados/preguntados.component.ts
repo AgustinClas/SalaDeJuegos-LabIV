@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthFirebaseService } from 'src/app/servicios/auth-firebase.service';
+import { DataStorageServiceService } from 'src/app/servicios/data-storage-service.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -8,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PreguntadosComponent implements OnInit {
   
+  juegosRecord:any = [];
   listadoPaises:any = [];
   paisesElegidos:any = ["1","2","3"];
   paisBandera:any = [];
@@ -15,7 +18,7 @@ export class PreguntadosComponent implements OnInit {
   contador = 0;
   juegoPerdido = false;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private auth:AuthFirebaseService, private DataStorage:DataStorageServiceService) { }
 
   Intento(eleccion:number){
 
@@ -25,6 +28,7 @@ export class PreguntadosComponent implements OnInit {
       this.AsignarPaises();
     }else{
       this.juegoPerdido = true;
+      this.GuardarJugada();
     }
 
   }
@@ -34,10 +38,6 @@ export class PreguntadosComponent implements OnInit {
     this.juegoPerdido = false;
     this.AsignarPaises();
   }
-
-  //QUE TENGA MENU (NAV BAR)
-  //QUE APAREZCA LA INFO DE LA BANDERA SELECCIONADA EN LA INFO BASICA
-
 
   GetApi(){ 
     this.AsignarPaises();
@@ -51,8 +51,6 @@ export class PreguntadosComponent implements OnInit {
           pais : auxPais.translations.spa.common,
           imagen : auxPais.flags.svg
         }
-
-        console.log(auxPais);
         
         if(newPais.imagen != undefined)
         this.listadoPaises.push(newPais)
@@ -60,6 +58,8 @@ export class PreguntadosComponent implements OnInit {
 
       this.AsignarPaises();
     });
+
+    this.ObtenerJuegos();
 
   }
 
@@ -76,6 +76,19 @@ export class PreguntadosComponent implements OnInit {
     if(this.paisBandera.imagen === undefined) this.AsignarPaises();
   }
 
-  
+  GuardarJugada(){
+    let jugada = {"usuario": this.auth.usuario , "resultado": this.contador, "fecha": new Date()}
+    this.DataStorage.GuardarJuego("trivia", jugada);
+  }
+
+  ObtenerJuegos(){
+
+    this.DataStorage.GetJuegos("trivia").subscribe(
+        prod => {this.juegosRecord = prod;}
+      )    
+  }
 
 }
+  
+
+

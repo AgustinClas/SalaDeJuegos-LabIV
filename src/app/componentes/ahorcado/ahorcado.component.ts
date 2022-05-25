@@ -1,4 +1,6 @@
 import { Component, OnInit, EventEmitter , ElementRef, ViewChild} from '@angular/core';
+import { AuthFirebaseService } from 'src/app/servicios/auth-firebase.service';
+import { DataStorageServiceService } from 'src/app/servicios/data-storage-service.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -34,7 +36,7 @@ export class AhorcadoComponent implements OnInit {
     'A':false,'S':false,'D':false,'F':false,'G':false,'H':false,'J':false,'K':false,'L':false,'Ñ':false,
     'Z':false,'X':false,'C':false,'V':false,'B':false,'N':false,'M':false}
 
-  constructor() {
+  constructor(private auth:AuthFirebaseService, private DataStorage:DataStorageServiceService) {
     this.vidas = 6;
     this.cantidadAciertos = 0;
   }
@@ -63,6 +65,7 @@ export class AhorcadoComponent implements OnInit {
       if(this.cantidadAciertos === this.palabraOriginal.length){
         this.bloquearTeclas();
         this.vidas = 10;
+        this.GuardarJugada("Victoria");
       }
     
       const element = document.getElementById(letra)
@@ -73,6 +76,7 @@ export class AhorcadoComponent implements OnInit {
 
       if(this.vidas===0){
         this.bloquearTeclas();
+        this.GuardarJugada("Derrota");
       }
     }
     
@@ -97,6 +101,11 @@ export class AhorcadoComponent implements OnInit {
         this.cantidadAciertos++;
       }
     }
+  }
+
+  GuardarJugada(resultado:string){
+    let jugada = {"usuario": this.auth.usuario , "resultado": resultado, "fecha": new Date()}
+    this.DataStorage.GuardarJuego("ahorcado", jugada);
   }
 
   reiniciarJuego(){
@@ -131,5 +140,4 @@ export class AhorcadoComponent implements OnInit {
     });
   }
 
-  
 }

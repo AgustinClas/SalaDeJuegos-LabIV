@@ -1,9 +1,11 @@
 <ul>
-    <li style="float:right"><a routerLink = 'Home'><img  id="logo" src="../../../assets/Logo2.png"></a></li>
+    <li style="float:right" class="liLogo"><a class="aLogo" routerLink = 'Home'><img  id="logo" src="../../../assets/Logo2.png"></a></li>
     <li *ngIf="(authService.authenticated$ | async) === true"  class="liClass"><a class="textLink" (click)="cerrarSesion()" routerLink =''>Cerrar Sesion</a></li>
     <li *ngIf="(authService.authenticated$ | async) === false" class="liClass"><a class="textLink"  routerLink =''>Iniciar Sesion</a></li>
     <li *ngIf="(authService.authenticated$ | async) === false" class="liClass"><a class="textLink"  routerLink ='Registro'>Registrarse</a></li>
     <li class =  "liClass"><a class="textLink" routerLink ='/QuienSoy'>Quien Soy</a></li>
     <li *ngIf="(authService.authenticated$ | async) === true"  class="liClass"><a class="textLink"  routerLink ='/chat'>Chat</a></li>
-    <li *ngIf="authService.usuario" id="email">{{authService.usuario}}</li>
+    <li *ngIf="(authService.authenticated$ | async) === true"  class="liClass"><a class="textLink"  routerLink ='/encuesta'>Encuesta</a></li>
+    <li *ngIf="(authService.authenticated$ | async) === true"  class="liClass"><a class="textLink"  routerLink ='/respuestasEncuesta'>Respuestas Encuesta</a></li>
+    <li *ngIf="(authService.authenticated$ | async) === true" id="email"><a id="aEmail">{{authService.usuario}}</a></li>
 </ul>

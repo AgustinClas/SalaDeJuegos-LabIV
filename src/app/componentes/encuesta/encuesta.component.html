@@ -1,0 +1,120 @@
+<div class="main">
+<div class="container">
+        <div class="order-md-1">
+            <h4 class="mb-3">Encuesta</h4>
+            <form class="needs-validation" [formGroup]="formValidaciones"  required>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">Nombre</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName"
+                            formControlName="firstName" placeholder="" value="" required>
+                        <small class="invalid"
+                            *ngIf="formValidaciones.controls['firstName'].errors?.['required'] && formValidaciones.controls['firstName'].touched">
+                            Nombre obligatorio!
+                        </small>
+                        <small class="invalid"
+                            *ngIf="formValidaciones.controls['firstName'].errors?.['pattern'] && formValidaciones.controls['firstName'].touched">
+                            Nombre inválido
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Apellido</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName"
+                            placeholder="" value="" required>
+                        <small class="invalid"
+                            *ngIf="formValidaciones.controls['lastName'].errors?.['required'] && formValidaciones.controls['lastName'].touched">
+                           Apellido obligatorio!
+                        </small>
+                        <small class="invalid"
+                            *ngIf="formValidaciones.controls['lastName'].errors?.['pattern'] && formValidaciones.controls['lastName'].touched">
+                            Apellido inválido
+                        </small>
+                    </div>
+                </div>
+  
+                <div class="mb-3">
+                    <label for="edad">Edad</label>
+                    <input type="edad" class="form-control" id="edad" name="edad" formControlName="edad">
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['edad'].errors?.['required'] && formValidaciones.controls['edad'].touched">
+                        Edad obligatoria!
+                    </small>
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['edad'].errors?.['pattern'] && formValidaciones.controls['edad'].touched">
+                        Edad inválida
+                    </small>
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['edad'].errors?.['min'] && formValidaciones.controls['edad'].touched">
+                        Muy joven!
+                    </small>
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['edad'].errors?.['max'] && formValidaciones.controls['edad'].touched">
+                        Muy viejo!
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="numTelefono">Numero de Teléfono</label>
+                    <input type="numTelefono" class="form-control" id="numTelefono" name="numTelefono" formControlName="numTelefono">
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['numTelefono'].errors?.['required'] && formValidaciones.controls['numTelefono'].touched">
+                        Numero de teléfono obligatorio!
+                    </small>
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['numTelefono'].errors?.['pattern'] && formValidaciones.controls['numTelefono'].touched">
+                        Numero de teléfono inválido
+                    </small>
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['numTelefono'].errors?.['maxlength'] && formValidaciones.controls['numTelefono'].touched">
+                        Numero de teléfono largo
+                    </small>
+                </div>
+                <label>¿Que juegos te gustaron?</label>
+                <div class="mb-3">  
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" id="ahorcado" name="fav_language" value="ahorcado" class="form-check-input" formControlName="ahorcado">
+                            <label for="ahorcado" class="form-check-label">Ahorcado</label><br>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" id="mayorMenor" name="fav_language" value="mayorMenor" class="form-check-input" formControlName="mayorMenor">
+                            <label for="mayorMenor" class="form-check-label">Mayor o Menor</label><br>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" id="trivia" name="fav_language" value="trivia" class="form-check-input" formControlName="trivia">
+                            <label for="trivia" class="form-check-label">Trivia</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" id="cuatroEnLinea" name="fav_language" value="cuatroEnLinea" class="form-check-input" formControlName="cuatroEnLinea">
+                            <label for="cuatroEnLinea" class="form-check-label">Cuatro en Linea</label>
+                        </div>
+                </div>
+                <label>¿Recomendarias nuestra pagina?</label>
+                <div class="mb-3">  
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="ahorcado" name="recomendacion" value="Seguro" class="form-check-input" checked formControlName="recomendacion">
+                            <label for="ahorcado" class="form-check-label">Seguro!</label><br>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="mayorMenor" name="recomendacion" value="Deberia pensarlo" class="form-check-input" formControlName="recomendacion">
+                            <label for="mayorMenor" class="form-check-label">Deberia pensarlo</label><br>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="trivia" name="recomendacion" value="Ni a mi peor enemigo" class="form-check-input" formControlName="recomendacion">
+                            <label for="trivia" class="form-check-label">Ni a mi peor enemigo</label>
+                        </div>
+                </div>
+                <div class="mb-3">
+                    <label for="sugerencia">¿Que juego te gustaria que agreguemos?</label>
+                    <input type="sugerencia" class="form-control" id="sugerencia" name="sugerencia" formControlName="sugerencia">
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['sugerencia'].errors?.['required'] && formValidaciones.controls['sugerencia'].touched">
+                        Ingreso obligatorio!
+                    </small>
+                </div>
+                    <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit"
+                    [disabled]="formValidaciones.invalid" (click)="CargarEncuesta()">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>

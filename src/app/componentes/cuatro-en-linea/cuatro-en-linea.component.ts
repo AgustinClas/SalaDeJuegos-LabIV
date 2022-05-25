@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthFirebaseService } from 'src/app/servicios/auth-firebase.service';
+import { DataStorageServiceService } from 'src/app/servicios/data-storage-service.service';
 
 @Component({
   selector: 'app-cuatro-en-linea',
@@ -53,8 +55,9 @@ export class CuatroEnLineaComponent implements OnInit {
   turno = "azul";
   mensaje = "Turno: " + this.turno;
 
+  partidaGuardada=false;
 
-  constructor() { }
+  constructor(private auth:AuthFirebaseService, private DataStorage:DataStorageServiceService) { }
 
   ngOnInit(): void {
   }
@@ -70,8 +73,17 @@ export class CuatroEnLineaComponent implements OnInit {
     if(this.VerificarVictoria(espacioOcupado, posicion)){
       this.BloquearBotones(true);
       this.mensaje = "Ganador: " + this.turno;
+
+      this.GuardarJugada();
+
     }else if(!this.VerificarEmpate())
       this.AsignarTurno();
+  }
+
+  GuardarJugada(){
+
+    let jugada = {"usuario": this.auth.usuario , "resultado": this.mensaje, "fecha": new Date()}
+    this.DataStorage.GuardarJuego("4-en-linea", jugada);
 
   }
 
@@ -130,12 +142,14 @@ export class CuatroEnLineaComponent implements OnInit {
   VerificarEmpate(){
     for(let i = 0; i < this.espacios.length; i++){
 
-      if(!this.espacios[i].ocupado)
-        return false;
+      if(!this.espacios[i].ocupado) return false;  
       
     }
+
     this.BloquearBotones(true);
     this.mensaje = "Partida empatada!"
+    this.GuardarJugada();
+
     return true;
   }
 
@@ -145,6 +159,8 @@ export class CuatroEnLineaComponent implements OnInit {
   }
 
   ReiniciarJuego(){
+
+
     for(let i = 0; i < this.espacios.length; i++){
       this.espacios[i].ocupado = false;
       this.espacios[i].clase = "key";

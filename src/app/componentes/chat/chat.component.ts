@@ -28,9 +28,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataStorage.GetMensajes().subscribe(
-      prod => {this.mensajes = prod;
-      this.mensajes.hora = new Date(this.mensajes.hora)}
-      
+      prod => {this.mensajes = prod;}
     )    
   }
 

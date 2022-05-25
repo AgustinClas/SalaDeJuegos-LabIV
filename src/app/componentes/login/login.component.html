@@ -8,8 +8,8 @@
                 <input type="text" id= "email" placeholder="Email" [(ngModel)] = "loginUsuario.email" >
                 <input type="password" placeholder="Contraseña" [(ngModel)] = "loginUsuario.password">
                 <input type="button" class="btn-login" (click)="ingresar()" value="Iniciar Sesion" >
-                <a routerLink ='RestablecerContraseña'>¿Olvidaste tu contraseña?</a>
-                <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente() " value="Iniciar Sesion Automaticamente">                
+                <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(0)" value="Iniciar Sesion Usuario">                
+                <input type="button" class="btn-new" (click)="iniciarSesionAutomaticamente(1)" value="Iniciar Sesion Admin">                
             </div>
         </div>
     </div>

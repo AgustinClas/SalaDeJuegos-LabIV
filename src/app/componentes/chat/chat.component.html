@@ -8,6 +8,7 @@
           <div [ngClass]="(authService.usuario === mensaje.usuario) ? 'enviado' : 'recibido'">
             <p *ngIf="(authService.usuario !== mensaje.usuario)" class="usuario">{{mensaje.usuario}}: </p>
             <p>{{mensaje.texto}}</p>
+            <p>{{mensaje.hora}}</p>
           </div>
         </div>
     </div>
